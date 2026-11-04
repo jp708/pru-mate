@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Practice - Oral Presentation Prep</title>
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-hover: #4338CA;
+            --secondary: #06B6D4;
+            --bg: #F8FAFC;
+            --card-bg: #FFFFFF;
+            --text: #0F172A;
+            --text-muted: #64748B;
+            --easy: #10B981;
+            --normal: #F59E0B;
+            --hard: #EF4444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: none;
+            background: white;
+            color: var(--text-muted);
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .level-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .level-btn {
+            padding: 8px 18px;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .level-btn.easy { border-color: var(--easy); color: var(--easy); }
+        .level-btn.easy.active { background: var(--easy); color: white; }
+
+        .level-btn.normal { border-color: var(--normal); color: var(--normal); }
+        .level-btn.normal.active { background: var(--normal); color: white; }
+
+        .level-btn.hard { border-color: var(--hard); color: var(--hard); }
+        .level-btn.hard.active { background: var(--hard); color: white; }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: none;
+        }
+
+        .card.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .exercise-box {
+            background: #F1F5F9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        .audio-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .audio-btn:hover {
+            opacity: 0.9;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #CBD5E1;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        .check-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .feedback.correct { color: var(--easy); }
+        .feedback.incorrect { color: var(--hard); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>English Oral Presentation Prep 🎓</h1>
+        <p>Practica para tu presentación oral del 7 de Noviembre</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTopic('numbers')">1. Numbers 10-100</button>
+        <button class="tab-btn" onclick="switchTopic('time')">2. Telling the Time</button>
+        <button class="tab-btn" onclick="switchTopic('likes')">3. Does... like?</button>
+    </div>
+
+    <div class="level-selector">
+        <button class="level-btn easy active" onclick="switchLevel('easy')">🟢 Fácil</button>
+        <button class="level-btn normal" onclick="switchLevel('normal')">🟡 Normal</button>
+        <button class="level-btn hard" onclick="switchLevel('hard')">🔴 Difícil</button>
+    </div>
+
+    <!-- NUMBERS -->
+    <div id="numbers-easy" class="card active">
+        <h3>Numbers: Nivel Fácil (Count by 10s)</h3>
+        <div class="exercise-box">
+            <p><strong>Escucha y repite:</strong> 10, 20, 30, 40, 50, 60, 70, 80, 90, 100</p>
+            <button class="audio-btn" onclick="speak('Ten, Twenty, Thirty, Forty, Fifty, Sixty, Seventy, Eighty, Ninety, One Hundred')">🔊 Escuchar</button>
+        </div>
+    </div>
+
+    <div id="numbers-normal" class="card">
+        <h3>Numbers: Nivel Normal (Random Numbers)</h3>
+        <div class="exercise-box">
+            <p>Escribe en inglés el número: <strong>47</strong></p>
+            <input type="text" id="num-input" placeholder="Escribe aquí...">
+            <button class="check-btn" onclick="checkAnswer('num-input', 'forty-seven', 'num-fb')">Comprobar</button>
+            <div id="num-fb" class="feedback"></div>
+        </div>
+    </div>
+
+    <div id="numbers-hard" class="card">
+        <h3>Numbers: Nivel Difícil (Full Sentences)</h3>
+        <div class="exercise-box">
+            <p>Lee en voz alta y practica la pronunciación:</p>
+            <p style="font-size: 1.2rem; margin: 10px 0; color: var(--primary);"><em>"I have 35 stickers and my friend has 80 points."</em></p>
+            <button class="audio-btn" onclick="speak('I have thirty-five stickers and my friend has eighty points.')">🔊 Escuchar Frase</button>
+        </div>
+    </div>
+
+    <!-- TIME -->
+    <div id="time-easy" class="card">
+        <h3>Time: Nivel Fácil (O'clock)</h3>
+        <div class="exercise-box">
+            <p>¿Qué hora es? <strong>3:00</strong></p>
+            <button class="audio-btn" onclick="speak('It is three o clock')">🔊 It's 3 o'clock</button>
+        </div>
+    </div>
+
+    <div id="time-normal" class="card">
+        <h3>Time: Nivel Normal (Half past / Quarter past)</h3>
+        <div class="exercise-box">
+            <p>Escribe en inglés la hora: <strong>4:30</strong></p>
+            <input type="text" id="time-input" placeholder="Ej: it's half past four">
+            <button class="check-btn" onclick="checkAnswer('time-input', 'it's half past four', 'time-fb')">Comprobar</button>
+            <div id="time-fb" class="feedback"></div>
+        </div>
+    </div>
+
+    <div id="time-hard" class="card">
+        <h3>Time: Nivel Difícil (Questions & Routines)</h3>
+        <div class="exercise-box">
+            <p>Responde a la pregunta en voz alta:</p>
+            <p style="font-size: 1.1rem; margin-bottom: 8px;"><strong>"What time do you get up?"</strong></p>
+            <p><em>Ejemplo: "I get up at 7 o'clock."</em></p>
+            <button class="audio-btn" onclick="speak('What time do you get up? I get up at seven o clock.')">🔊 Escuchar Ejemplo</button>
+        </div>
+    </div>
+
+    <!-- LIKES -->
+    <div id="likes-easy" class="card">
+        <h3>Likes: Nivel Fácil (Vocabulary)</h3>
+        <div class="exercise-box">
+            <p>Vocabulario clave: Pizza 🍕, Monkeys 🐒, Ice cream 🍦, Apples 🍎</p>
+            <button class="audio-btn" onclick="speak('Pizza, Monkeys, Ice cream, Apples')">🔊 Escuchar Vocabulario</button>
+        </div>
+    </div>
+
+    <div id="likes-normal" class="card">
+        <h3>Likes: Nivel Normal (Does he/she like...?)</h3>
+        <div class="exercise-box">
+            <p>Completa la respuesta corta: <strong>"Does she like pizza?"</strong> (Sí)</p>
+            <input type="text" id="likes-input" placeholder="Escribe la respuesta...">
+            <button class="check-btn" onclick="checkAnswer('likes-input', 'yes, she does', 'likes-fb')">Comprobar</button>
+            <div id="likes-fb" class="feedback"></div>
+        </div>
+    </div>
+
+    <div id="likes-hard" class="card">
+        <h3>Likes: Nivel Difícil (Presentation Dialogue)</h3>
+        <div class="exercise-box">
+            <p>Practica tu speech de presentación:</p>
+            <p style="font-size: 1.1rem; margin: 10px 0; color: var(--primary);"><em>"This is my friend Alex. Does he like monkeys? Yes, he does! He loves zoo animals."</em></p>
+            <button class="audio-btn" onclick="speak('This is my friend Alex. Does he like monkeys? Yes, he does! He loves zoo animals.')">🔊 Escuchar Speech</button>
+        </div>
+    </div>
+
+    <script>
+        let currentTopic = 'numbers';
+        let currentLevel = 'easy';
+
+        function switchTopic(topic) {
+            currentTopic = topic;
+            updateView();
+            document.querySelectorAll('.tab-btn').forEach((btn, idx) => {
+                btn.classList.toggle('active', (topic === 'numbers' && idx === 0) || (topic === 'time' && idx === 1) || (topic === 'likes' && idx === 2));
+            });
+        }
+
+        function switchLevel(level) {
+            currentLevel = level;
+            updateView();
+            document.querySelectorAll('.level-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.classList.contains(level));
+            });
+        }
+
+        function updateView() {
+            document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+            const targetId = `${currentTopic}-${currentLevel}`;
+            const target = document.getElementById(targetId);
+            if (target) target.classList.add('active');
+        }
+
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Tu navegador no soporta síntesis de voz.');
+            }
+        }
+
+        function checkAnswer(inputId, correctAnswer, feedbackId) {
+            const val = document.getElementById(inputId).value.trim().toLowerCase();
+            const fb = document.getElementById(feedbackId);
+            if (val === correctAnswer.toLowerCase()) {
+                fb.textContent = '¡Correcto! Excelente trabajo 🎉';
+                fb.className = 'feedback correct';
+            } else {
+                fb.textContent = `Inténtalo de nuevo. Respuesta sugerida: "${correctAnswer}"`;
+                fb.className = 'feedback incorrect';
+            }
+        }
+    </script>
+</body>
+</html>
